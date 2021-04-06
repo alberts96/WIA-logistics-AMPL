@@ -13,7 +13,7 @@ Expected Annual Revenue by Area (in $1,000s)
 
 <div>
 <table border="1"style="text-align: center;">
-  <tr><td>$34</td><td> 	$43</td><td> 	$62 </td><td>	$42</td><td> 	$34</td></tr>
+  <tr><td style="background-color:yellow">$34</td><td> 	$43</td><td> 	$62 </td><td>	$42</td><td> 	$34</td></tr>
   <tr><td>$64</td><td>$43</td><td> 	$71</td><td> 	$48</td><td> 	$65</td></tr>
   <tr><td>$57</td><td>	$57</td><td> 	$51 </td><td>	$61</td><td> 	$30</td></tr>
   <tr><td>$32</td><td>	$38</td><td> 	$70</td><td> 	$56</td><td> 	$40</td></tr>
@@ -24,7 +24,7 @@ Expected Annual Revenue by Area (in $1,000s)
 
 WIA can build wireless towers in any block in the grid at a *cost of $150,000 per tower*. Each tower can provide wireless service to the block it is in and to all adjacent blocks (blocks are considered to be adjacent if they share a side; blocks touching only at cornerpoints are not considered adjacent). WIA would like to determine how many towers to build and where to build them to maximize profits in the first year of operations. 
 
-Note: If a block can receive wireless service from two different towers, the revenue for that block should be counted only once.
+***Note**: If a block can receive wireless service from two different towers, the revenue for that block should be counted only once.*
 
 ```DAT
 data;
@@ -120,6 +120,14 @@ So just need to modify the *MOD file* in the following manner:
 subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=1;
 
 ```
+
+
+$34 	$43 	$62 	$42 	$34
+$64 	$43 	$71 	$48 	$65
+$57 	$57 	$51 	$61 	$30
+$32 	$38 	$70 	$56 	$40
+$68 	$73 	$30 	$56 	$44
+
 
 
             
