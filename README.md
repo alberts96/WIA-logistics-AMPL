@@ -34,3 +34,20 @@ Note: If a block can receive wireless service from two different towers, the rev
 5. Compare the optimal solutions found in points 2 and 4: how much money will WIA make in the first year in the two scenarios?
 
 ## Developement
+
+''' AMPL
+param totArea;
+set Area:=1.. totArea;
+
+param near{Area,Area} binary;
+param EAR{Area} >=0;
+param cost >=0;
+
+var tower{Area} binary;
+var covered{Area} binary;
+
+
+maximize Profit:sum{i in Area} (EAR[i]*covered[i]-cost*tower[i]);
+subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=covered[i];
+
+'''
