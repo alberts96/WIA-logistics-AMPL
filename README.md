@@ -35,7 +35,7 @@ Note: If a block can receive wireless service from two different towers, the rev
 
 ## Developement
 
-''' AMPL
+```AMPL
 param totArea;
 set Area:=1.. totArea;
 
@@ -49,5 +49,4 @@ var covered{Area} binary;
 
 maximize Profit:sum{i in Area} (EAR[i]*covered[i]-cost*tower[i]);
 subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=covered[i];
-
-'''
+```
