@@ -91,7 +91,7 @@ tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
 
 ## Implementation 
 
-Firt annoying task to complete is to write the data in a readable manner in a *DAT file* (find it at the [#data](data paragraph).
+Firt annoying task to complete is to write the data in a readable manner in a *DAT file*. Find it at the <a href="#Data">data paragraph</a>.
 
 
 After writing the mathematical model, the *MOD file* should be written. It is read by *AMPLIDE*.
