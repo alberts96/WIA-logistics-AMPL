@@ -47,6 +47,22 @@ subsets of 𝐼, one for each area which we will call ***𝑺𝒊*** and which w
 to the area 𝑖 and the area 𝑖 itself. They would be the areas that would receive coverage if there was one
 tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
 
+So Yi is 1 if and only if at least one Xj for for j belonging to Si and 1.
+
+We immediately express the objective function, that is the maximization of profit in the first year:
+
+Maximize∑_(i∈I)▒〖(EARi ×Yi 〗- costo ×Xi)
+
+... where with EARi we indicate the estimated annual cost for area i.
+
+We clearly understand that the thrust of this function, still unconstrained, involves obligatory values:
+
+	Xi=0   ∀i
+
+	Yi=1   ∀i
+
+
+
 
 
 ```AMPL
