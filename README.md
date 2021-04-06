@@ -26,62 +26,6 @@ WIA can build wireless towers in any block in the grid at a *cost of $150,000 pe
 
 Note: If a block can receive wireless service from two different towers, the revenue for that block should be counted only once.
 
-### Tasks
-1. Formulate an ILP model for the problem of WIA Communications.
-2. Implement the model using the modeling language AMPL, and solve it by means of CPLEX.
-3. Suppose WIA Communications is required to provide wireless service to all of the blocks. Formulate the variant of the problem in terms of PLI.
-4. Solve the variant of the problem using AMPL and CPLEX. 
-5. Compare the optimal solutions found in points 2 and 4: how much money will WIA make in the first year in the two scenarios?
-
-## Developement
-
-The WIA Communications problem requires profit maximization.
-We have both costs and revenues data, they only need to be activated or not. This we can do
-with the use of **two different binary variables**. First we define ***𝐼*** *as a set of the 25 areas* e
-we instantiate the two variables:
-- **Xi** : 1 if we place a tower in the area 
-- **Yi** : is the area covered by the service or not 
-
-It therefore appears as a ***coverage location problem***; and as per manual, we define
-subsets of 𝐼, one for each area which we will call ***𝑺𝒊*** and which will contain the adjacent areas
-to the area 𝑖 and the area 𝑖 itself. They would be the areas that would receive coverage if there was one
-tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
-
-So Yi is 1 if and only if at least one Xj for for j belonging to Si and 1.
-
-We immediately express the objective function, that is the maximization of profit in the first year:
-
-Maximize∑_(i∈I)▒〖(EARi ×Yi 〗- costo ×Xi)
-
-... where with EARi we indicate the estimated annual cost for area i.
-
-We clearly understand that the thrust of this function, still unconstrained, involves obligatory values:
-
-	Xi=0   ∀i
-
-	Yi=1   ∀i
-
-
-
-
-
-```AMPL
-param totArea;
-set Area:=1.. totArea;
-
-param near{Area,Area} binary;
-param EAR{Area} >=0;
-param cost >=0;
-
-var tower{Area} binary;
-var covered{Area} binary;
-
-
-maximize Profit:sum{i in Area} (EAR[i]*covered[i]-cost*tower[i]);
-subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=covered[i];
-```
-
-
 ```DAT
 data;
 param totArea=25;
@@ -122,6 +66,65 @@ param EAR:= 1  34  2  43 3  62 4  42  5  34
             21 68  22 73 23 30 24 56 25  44;
             
 ```
+
+### Tasks
+1. Formulate an ILP model for the problem of WIA Communications.
+2. Implement the model using the modeling language AMPL, and solve it by means of CPLEX.
+3. Suppose WIA Communications is required to provide wireless service to all of the blocks. Formulate the variant of the problem in terms of PLI.
+4. Solve the variant of the problem using AMPL and CPLEX. 
+5. Compare the optimal solutions found in points 2 and 4: how much money will WIA make in the first year in the two scenarios?
+
+## Developement
+
+The WIA Communications problem requires profit maximization.
+We have both costs and revenues data, they only need to be activated or not. This we can do
+with the use of **two different binary variables**. First we define ***𝐼*** *as a set of the 25 areas* e
+we instantiate the two variables:
+- **Xi** : 1 if we place a tower in the area 
+- **Yi** : is the area covered by the service or not 
+
+It therefore appears as a ***coverage location problem***; and as per manual, we define
+subsets of 𝐼, one for each area which we will call ***𝑺𝒊*** and which will contain the adjacent areas
+to the area 𝑖 and the area 𝑖 itself. They would be the areas that would receive coverage if there was one
+tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
+
+So Yi is 1 if and only if at least one Xj for for j belonging to Si and 1.
+
+We immediately express the objective function, that is the maximization of profit in the first year:
+
+Maximize∑_(i∈I)(EARi × Yi - cost × Xi)
+
+... where with EARi we indicate the estimated annual cost for area i.
+
+We clearly understand that the thrust of this function, still unconstrained, involves obligatory values:
+
+	Xi=0   ∀i
+
+	Yi=1   ∀i
+
+
+
+
+∑_(i∈I)▒Yi=#I
+
+
+```AMPL
+param totArea;
+set Area:=1.. totArea;
+
+param near{Area,Area} binary;
+param EAR{Area} >=0;
+param cost >=0;
+
+var tower{Area} binary;
+var covered{Area} binary;
+
+
+maximize Profit:sum{i in Area} (EAR[i]*covered[i]-cost*tower[i]);
+subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=covered[i];
+```
+
+
             
 
            
