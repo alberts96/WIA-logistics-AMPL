@@ -13,7 +13,7 @@ Expected Annual Revenue by Area (in $1,000s)
 
 <div>
 <table border="1"style="text-align: center;">
-  <tr><td> .bg-yellow $34</td><td> 	$43</td><td> 	$62 </td><td>	$42</td><td> 	$34</td></tr>
+  <tr><td .bg-yellow> $34</td><td> 	$43</td><td> 	$62 </td><td>	$42</td><td> 	$34</td></tr>
   <tr><td>$64</td><td>$43</td><td> 	$71</td><td> 	$48</td><td> 	$65</td></tr>
   <tr><td>$57</td><td>	$57</td><td> 	$51 </td><td>	$61</td><td> 	$30</td></tr>
   <tr><td>$32</td><td>	$38</td><td> 	$70</td><td> 	$56</td><td> 	$40</td></tr>
