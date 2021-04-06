@@ -74,7 +74,7 @@ param EAR:= 1  34  2  43 3  62 4  42  5  34
 4. Solve the variant of the problem using AMPL and CPLEX. 
 5. Compare the optimal solutions found in points 2 and 4: how much money will WIA make in the first year in the two scenarios?
 
-## Developement
+## The model 
 
 The WIA Communications problem requires profit maximization.
 We have both costs and revenues data, they only need to be activated or not. This we can do
@@ -88,24 +88,13 @@ subsets of 𝐼, one for each area which we will call ***𝑺𝒊*** and which w
 to the area 𝑖 and the area 𝑖 itself. They would be the areas that would receive coverage if there was one
 tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
 
-So Yi is 1 if and only if at least one Xj for for j belonging to Si and 1.
 
-We immediately express the objective function, that is the maximization of profit in the first year:
+## Implementation 
 
-Maximize∑_(i∈I)(EARi × Yi - cost × Xi)
-
-... where with EARi we indicate the estimated annual cost for area i.
-
-We clearly understand that the thrust of this function, still unconstrained, involves obligatory values:
-
-	Xi=0   ∀i
-
-	Yi=1   ∀i
+Firt annoying task to complete is to write the data in a readable manner in a *DAT file* (find it at the [#data](data paragraph).
 
 
-
-
-∑_(i∈I)▒Yi=#I
+After writing the mathematical model, the *MOD file* should be written. It is read by *AMPLIDE*.
 
 
 ```AMPL
@@ -122,6 +111,14 @@ var covered{Area} binary;
 
 maximize Profit:sum{i in Area} (EAR[i]*covered[i]-cost*tower[i]);
 subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=covered[i];
+```
+Answering the third request of the assignment needs only a changement: use the constraint to force all cells be covered by the service.
+So just need to modify the *MOD file* in the following manner:
+
+```AMPL
+
+subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=1;
+
 ```
 
 
