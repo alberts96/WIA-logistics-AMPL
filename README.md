@@ -1,6 +1,6 @@
 # WIA-logistics-AMPL
 Project for logistics exam: Resolution of a linear problem using AMPL
-<img src="https://www.artelys.com/wp-content/uploads/2017/10/ampl.png"/>
+<img src="https://www.artelys.com/wp-content/uploads/2018/11/ampl.png"/>
 
 ## Assignement
 
