@@ -80,13 +80,33 @@ The WIA Communications problem requires profit maximization.
 We have both costs and revenues data, they only need to be activated or not. This we can do
 with the use of **two different binary variables**. First we define ***𝐼*** *as a set of the 25 areas* e
 we instantiate the two variables:
-- **Xi** : 1 if we place a tower in the area 
-- **Yi** : is the area covered by the service or not 
+- **Xi** : 1 if we place a tower in the area ; 0 otherwise
+- **Yi** : 1  is the area covered by the service or not ; 0 otherwise
 
 It therefore appears as a ***coverage location problem***; and as per manual, we define
 subsets of 𝐼, one for each area which we will call ***𝑺𝒊*** and which will contain the adjacent areas
 to the area 𝑖 and the area 𝑖 itself. They would be the areas that would receive coverage if there was one
 tower in 𝑖 (or the areas that would cover 𝑖 if there was a tower).
+
+So 𝑌𝑖 is 1 if and only if at least one 𝑋𝑗 for 𝑗 belonging to 𝑆𝑖 and 1
+
+We immediately express the objective function, that is the maximization of profit in
+first year:
+
+![obj1](img/maximize1.JPG)
+
+.. where with 𝐸𝐴𝑅𝑖 we indicate the estimated annual earnings for the area 𝑖.
+
+
+We clearly understand that the thrust of this still unconstrained function involves values obliged:
+- **Xi** : = 0 ∀𝑖
+- **Yi** = 1  ∀𝑖
+
+Once this is done, it is necessary to impose as said before but in a different way, that if no Xj for j
+belonging to Si is 1, then Yi is 0. It can be written like this:
+
+![constr1](img/constraint1.JPG)
+
 
 
 ## Implementation 
@@ -121,12 +141,23 @@ subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=1;
 
 ```
 
+# Resolults 
+ 
+We have implemented both cases with AMPL and now we can compare the results obtained.
 
-$34 	$43 	$62 	$42 	$34
-$64 	$43 	$71 	$48 	$65
-$57 	$57 	$51 	$61 	$30
-$32 	$38 	$70 	$56 	$40
-$68 	$73 	$30 	$56 	$44
+In the tables the areas that would host a tower are highlighted in green and in yellow those that
+they receive coverage
+
+In the first delivery we get a profit of $ 377,000 in the first year.
+
+![result1](img/Results1.JPG)
+
+
+With the second model we can reach a profit of $ 219,000, lower later
+to the introduction of a further constraint.
+Obviously all the boxes are highlighted.
+
+![result1](img/result3.JPG)
 
 
 
