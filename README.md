@@ -175,7 +175,7 @@ they receive coverage
 
 In the first delivery we get a profit of $ 377,000 in the first year.
 
-![result1](img/Results1.JPG)
+![result1](img/Resuts1.JPG)
 
 
 With the second model we can reach a profit of $ 219,000, lower later
