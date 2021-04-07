@@ -108,6 +108,22 @@ belonging to Si is 1, then Yi is 0. It can be written like this:
 ![constr1](img/constraint1.JPG)
 
 
+To answer point 3 of the delivery, which requires coverage of all areas, it is sufficient
+add the constraint:
+
+![constr1](img/constraint2.JPG)
+
+...where with # 𝐼 we indicate the cardinality of the set 𝐼, that is the total number of areas.
+
+In fact, nothing conflicts with the previously expressed constraints, and the function of
+maximization remains equally valid. However, by doing this we would have instantiated one
+variable 𝑌𝑖 which has become superfluous, as it is always 1 and is no longer a variable but a datum.
+So let's slightly change the linear model previously described,
+by modifying the objective function and the only expressed constraint. The modification simply consists
+in replacing '1' where it previously appeared 𝑌𝑖.
+This is the situation:
+
+![constr1](img/maximize3.JPG)
 
 ## Implementation 
 
@@ -141,7 +157,7 @@ subject to Covered{i in Area}:sum{j in Area}near[i,j]*tower[j]>=1;
 
 ```
 
-# Resolults 
+# Results 
  
 We have implemented both cases with AMPL and now we can compare the results obtained.
 
