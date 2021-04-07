@@ -76,6 +76,8 @@ param EAR:= 1  34  2  43 3  62 4  42  5  34
 
 ## The model 
 
+### Main
+
 The WIA Communications problem requires profit maximization.
 We have both costs and revenues data, they only need to be activated or not. This we can do
 with the use of **two different binary variables**. First we define ***𝐼*** *as a set of the 25 areas* e
@@ -107,7 +109,9 @@ belonging to Si is 1, then Yi is 0. It can be written like this:
 
 ![constr1](img/constraint1.JPG)
 
+The model is completed and working.
 
+### Variation
 To answer point 3 of the delivery, which requires coverage of all areas, it is sufficient
 add the constraint:
 
@@ -124,6 +128,11 @@ in replacing '1' where it previously appeared 𝑌𝑖.
 This is the situation:
 
 ![constr1](img/maximize3.JPG)
+
+
+Now the maximization function sums all the gains, given as safe, while the constraint
+remained requires that in at least one of the areas belonging to Si there is a tower, and this
+for each belonging to 𝐼, so as to ensure that each area is covered by the signal.
 
 ## Implementation 
 
